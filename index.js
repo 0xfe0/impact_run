@@ -4,12 +4,12 @@ const path = require('path');
 const errorHandler = require('errorhandler');
 
 //Import db object.
-let db = require('./db');
+let db = require('./config/db');
 //sync the db;
 db.sequelize.sync();
 
 //production or dev?
-let isProduction = require('./config').db;
+let isProduction = require('./config/config').db;
 
 
 //set up the basic server

@@ -1,3 +1,4 @@
+//DB config
 let db = {
     HOST: "localhost",
     USER: "postgres",
@@ -12,11 +13,15 @@ let db = {
     }
 };
 
+//production or dev?
 const isProduction = process.env.NODE_ENV === 'production';
+
+let CSV_BASE_PATH = "/tmp/uploads/";
 
 
 //export stuff
 module.exports = {
     db: db,
     isProduction: isProduction,
+    CSV_BASE_PATH: CSV_BASE_PATH,
 };

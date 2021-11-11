@@ -24,6 +24,9 @@ module.exports = (sequelize, Sequelize) => {
       result: {
           type: Sequelize.STRING,
       },
+    },    
+    {
+      initialAutoIncrement: 1000,
     });
 
     Students.beforeSave((student, options) => {
