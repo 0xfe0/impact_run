@@ -40,7 +40,7 @@ const CSV_BASE_PATH = require("../../../config/config").CSV_BASE_PATH;
 
 
 /**
- * @api {get} /student/upload Upload Students
+ * @api {get} /students/upload Upload Students
  * @apiName Upload Students
  * @apiPermission None
  * @apiGroup Students
@@ -92,7 +92,7 @@ router.post('/upload', upload.single("file"), (req, res, next) => {
 });
 
 /**
- * @api {get} /student/:id/result Student Result
+ * @api {get} /students/:id/result Student Result
  * @apiName Student Result
  * @apiPermission None
  * @apiGroup Students
