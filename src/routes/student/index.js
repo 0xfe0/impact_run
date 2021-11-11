@@ -1,7 +1,9 @@
 const router = require('express').Router();
 
 //import the model
-let Students = require('../../../config/db').students;
+let {students, Sequelize} = require('../../../config/db');
+let Students = students;
+
 
 //csv stuff
 const fs = require("fs");
@@ -9,6 +11,32 @@ const csv = require("fast-csv");
 const upload = require("../../../config/uploader");
 const CSV_BASE_PATH = require("../../../config/config").CSV_BASE_PATH;
 
+
+/**
+ * @api {get} /students Get Students
+ * @apiName Get All students
+ * @apiPermission None
+ * @apiGroup Students
+ * 
+ * @apiParam {string} resultStatus passed/failed
+ * 
+ * @apiSuccess success List of all students fulfilling the resultStatus condition
+ */
+ router.get('/', (req, res, next) => {
+     let resultStatus = req.query.resultStatus;
+     var condition = resultStatus ? { result: { [Sequelize.Op.iLike]: `%${resultStatus}%` } } : null;
+
+     Students.findAll({ where: condition })
+     .then(data => {
+       res.status(200).json(data);
+     })
+     .catch(err => {
+       res.status(500).send({
+         message:
+           err.message || "Some error occurred while retrieving students."
+       });
+     });
+});
 
 
 /**
@@ -64,7 +92,7 @@ router.post('/upload', upload.single("file"), (req, res, next) => {
 });
 
 /**
- * @api {get} /:id/result Student Result
+ * @api {get} /student/:id/result Student Result
  * @apiName Student Result
  * @apiPermission None
  * @apiGroup Students
