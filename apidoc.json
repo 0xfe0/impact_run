@@ -1,0 +1,11 @@
+{
+    "name": "Impact Run",
+    "version": "0.0.1",
+    "description": "ImpactRun APIs",
+    "title": "Custom apiDoc browser title",
+    "template": {
+      "withCompare": true,
+      "withGenerator": true,
+      "aloneDisplay": false
+    }
+  }
